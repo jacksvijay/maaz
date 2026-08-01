@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaAz.app | Advanced Security - Coming Soon</title>
-    <!-- Favicon - Replace with your shield icon if possible -->
     <link rel="icon" type="image/png" href="logo.png">
     
     <style>
-        /* Base Styles - Defining colors from the logo */
         :root {
-            --maaz-red: #da291c; /* The distinct red from your logo */
-            --maaz-gray-light: #53565a; /* The gray in your logo text */
-            --maaz-gray-dark: #2a2c2e; /* A darker gray for contrast */
-            --bg-color: #ffffff; /* Clean white background */
+            --maaz-red: #da291c;
+            --maaz-gray-light: #53565a;
+            --maaz-gray-dark: #2a2c2e;
+            --bg-color: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* Prevent text selection across the page */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         body {
@@ -33,28 +36,33 @@
             text-align: center;
             overflow: hidden;
             padding: 20px;
+            transition: filter 0.3s ease;
         }
 
-        /* Container and Content */
+        /* Privacy Layer for Screen Recording / Blur on Unfocus */
+        body.protected {
+            filter: blur(25px) grayscale(100%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
         .coming-soon-container {
             max-width: 600px;
             width: 100%;
         }
 
-        /* Logo Area */
         .logo-section {
-            margin-bottom: 50px;
-            /* Animation for entry */
+            margin-bottom: 40px;
             animation: fadeInDown 1s ease-out;
         }
 
         .main-logo {
-            max-width: 320px; /* Adjust size based on how the PNG looks */
+            max-width: 300px;
             width: 100%;
             height: auto;
+            pointer-events: none; /* Prevents dragging image */
         }
 
-        /* Coming Soon Text */
         .status-header {
             margin-bottom: 25px;
             animation: fadeIn 1.2s ease-out 0.5s both;
@@ -67,78 +75,78 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.85rem;
-            margin-bottom: 10px;
-            padding: 5px 15px;
-            background-color: rgba(218, 41, 28, 0.08); /* Faint red highlight */
+            margin-bottom: 15px;
+            padding: 6px 16px;
+            background-color: rgba(218, 41, 28, 0.08);
             border-radius: 20px;
+            border: 1px solid rgba(218, 41, 28, 0.2);
         }
 
+        /* Main Headline with Redacted Blur effect */
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             letter-spacing: -1.5px;
             color: var(--maaz-gray-dark);
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
-        /* Description */
+        /* Hover-to-Reveal / Redact Effect */
+        .secure-text {
+            display: inline-block;
+            position: relative;
+            filter: blur(10px);
+            background: #2a2c2e;
+            color: transparent;
+            border-radius: 4px;
+            padding: 0 8px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .secure-text::after {
+            content: "🔒 HOVER TO DECRYPT";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--maaz-red);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Revealed State on Hover */
+        .secure-text:hover {
+            filter: blur(0);
+            background: transparent;
+            color: var(--maaz-gray-dark);
+        }
+
+        .secure-text:hover::after {
+            opacity: 0;
+        }
+
+        /* Description with Hover Reveal */
         p.description {
-            font-size: 1.125rem;
+            font-size: 1.1rem;
             color: var(--maaz-gray-light);
+            margin-top: 25px;
             margin-bottom: 40px;
             line-height: 1.6;
             animation: fadeIn 1.2s ease-out 0.8s both;
         }
 
-        /* Call to Action - Optional Newsletter/Notify Form */
-        .cta-form {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 50px;
-            animation: fadeIn 1.2s ease-out 1s both;
-        }
-
-        @media (max-width: 500px) {
-            .cta-form {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        .cta-input {
-            padding: 12px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 300px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .cta-input:focus {
-            outline: none;
-            border-color: var(--maaz-red);
-        }
-
-        .cta-button {
-            padding: 12px 24px;
-            background-color: var(--maaz-red);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+        .privacy-notice {
+            font-size: 0.8rem;
+            color: var(--maaz-red);
+            margin-bottom: 25px;
             font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            letter-spacing: 0.5px;
         }
 
-        .cta-button:hover {
-            background-color: #b01f16; /* Darker red on hover */
-            transform: translateY(-2px);
-        }
-
-        /* Footer Footer Details - Mimics the logo taglines */
         .footer-tagline {
             color: var(--maaz-gray-light);
             font-size: 0.9rem;
@@ -156,7 +164,6 @@
             font-size: 0.7rem;
         }
 
-        /* Animations */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -170,43 +177,41 @@
             to { opacity: 1; }
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            p.description { font-size: 1rem; }
-            .footer-tagline { font-size: 0.8rem; gap: 8px; }
+            h1 { font-size: 2rem; }
+            p.description { font-size: 0.95rem; }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
     <div class="coming-soon-container">
         
-        <!-- Logo Section -->
+        <!-- Logo -->
         <div class="logo-section">
-            <!-- Note: Assumes your logo image is in the same folder named logo.png -->
-            <img src="logo.jpeg" alt="MaAz Advanced Security Logo" class="main-logo">
+            <img src="logo.jpeg" alt="MaAz Security Logo" class="main-logo" ondragstart="return false;">
         </div>
 
-        <!-- Headline Section -->
+        <!-- Headline with Interactive Decryption -->
         <div class="status-header">
-            <span class="pre-title">LAUNCHING 2026</span>
-            <h1>Something Secured<br>is Coming Soon.</h1>
+            <span class="pre-title">ENCRYPTED ENVIRONMENT</span>
+            <h1>
+                Next-Gen Security<br>
+                <span class="secure-text">Is Launching Soon</span>
+            </h1>
         </div>
 
-        <!-- Description -->
+        <!-- Description with Hover Reveal -->
         <p class="description">
-            We are working hard to build the next generation of security solutions. <br>
-            A seamless experience for MaAz.app is on its way.
+            We are engineering a zero-trust platform. <br>
+            <span class="secure-text">Protected from recording, leaks, and unauthorized access.</span>
         </p>
 
-        <!-- Optional Call to Action Section (Remove if not needed) -->
-        <!-- <form class="cta-form">
-            <input type="email" placeholder="Enter your email for updates..." class="cta-input" required>
-            <button type="submit" class="cta-button">Notify Me</button>
-        </form> -->
+        <div class="privacy-notice">
+            🛡️ Content Protection Active
+        </div>
 
-        <!-- Footer / Tagline Section (Mirroring your logo) -->
+        <!-- Taglines -->
         <div class="footer-tagline">
             <span>Secure</span>
             <span class="tag-dot">•</span>
@@ -217,5 +222,37 @@
 
     </div>
 
+    <script>
+        // --- ANTI-SCREENSHOT & SCREEN RECORDING PROTECTION ---
+
+        // 1. Obscure page when window loses focus (Tab switch, Snipping Tool, or Screen Recorders)
+        window.addEventListener('blur', () => {
+            document.body.classList.add('protected');
+        });
+
+        window.addEventListener('focus', () => {
+            document.body.classList.remove('protected');
+        });
+
+        // 2. Disable Key Shortcuts (PrtScn, Ctrl+P, Ctrl+S, Inspect Element)
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                navigator.clipboard.writeText(''); // Clear clipboard
+                alert('Screenshots are disabled on MaAz.app for security reasons.');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            // Block Ctrl+P (Print), Ctrl+S (Save), Ctrl+Shift+I (DevTools)
+            if (
+                (e.ctrlKey && (e.key === 'p' || e.key === 's' || e.key === 'u')) ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.metaKey && e.shiftKey && (e.key === '3' || e.key === '4' || e.key === '5')) // macOS Screenshots
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
