@@ -3,60 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maaz.app | Coming Soon</title>
+    <title>MaAz.app | Advanced Security - Coming Soon</title>
+    <!-- Favicon - Replace with your shield icon if possible -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <style>
+        /* Base Styles - Defining colors from the logo */
+        :root {
+            --maaz-red: #da291c; /* The distinct red from your logo */
+            --maaz-gray-light: #53565a; /* The gray in your logo text */
+            --maaz-gray-dark: #2a2c2e; /* A darker gray for contrast */
+            --bg-color: #ffffff; /* Clean white background */
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #0f172a;
-            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--maaz-gray-dark);
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             text-align: center;
+            overflow: hidden;
             padding: 20px;
         }
-        .container {
-            max-width: 500px;
+
+        /* Container and Content */
+        .coming-soon-container {
+            max-width: 600px;
+            width: 100%;
         }
+
+        /* Logo Area */
+        .logo-section {
+            margin-bottom: 50px;
+            /* Animation for entry */
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .main-logo {
+            max-width: 320px; /* Adjust size based on how the PNG looks */
+            width: 100%;
+            height: auto;
+        }
+
+        /* Coming Soon Text */
+        .status-header {
+            margin-bottom: 25px;
+            animation: fadeIn 1.2s ease-out 0.5s both;
+        }
+
+        .pre-title {
+            display: inline-block;
+            color: var(--maaz-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            padding: 5px 15px;
+            background-color: rgba(218, 41, 28, 0.08); /* Faint red highlight */
+            border-radius: 20px;
+        }
+
         h1 {
             font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.05em;
-            margin-bottom: 12px;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -1.5px;
+            color: var(--maaz-gray-dark);
+            line-height: 1.1;
         }
-        p {
+
+        /* Description */
+        p.description {
             font-size: 1.125rem;
-            color: #94a3b8;
-            margin-bottom: 32px;
+            color: var(--maaz-gray-light);
+            margin-bottom: 40px;
             line-height: 1.6;
+            animation: fadeIn 1.2s ease-out 0.8s both;
         }
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            border-radius: 9999px;
-            font-size: 0.875rem;
+
+        /* Call to Action - Optional Newsletter/Notify Form */
+        .cta-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1.2s ease-out 1s both;
+        }
+
+        @media (max-width: 500px) {
+            .cta-form {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .cta-input {
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .cta-input:focus {
+            outline: none;
+            border-color: var(--maaz-red);
+        }
+
+        .cta-button {
+            padding: 12px 24px;
+            background-color: var(--maaz-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 24px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #b01f16; /* Darker red on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Footer Footer Details - Mimics the logo taglines */
+        .footer-tagline {
+            color: var(--maaz-gray-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 1s ease-out 1.2s both;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+
+        .tag-dot {
+            color: var(--maaz-red);
+            font-size: 0.7rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            p.description { font-size: 1rem; }
+            .footer-tagline { font-size: 0.8rem; gap: 8px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="badge">Under Construction</div>
-        <h1>Maaz.app</h1>
-        <p>Something exciting is in the works. We are working hard to bring you a seamless experience. Stay tuned!</p>
+
+    <div class="coming-soon-container">
+        
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <!-- Note: Assumes your logo image is in the same folder named logo.png -->
+            <img src="logo.jpeg" alt="MaAz Advanced Security Logo" class="main-logo">
+        </div>
+
+        <!-- Headline Section -->
+        <div class="status-header">
+            <span class="pre-title">LAUNCHING 2024</span>
+            <h1>Something Secured<br>is Coming Soon.</h1>
+        </div>
+
+        <!-- Description -->
+        <p class="description">
+            We are working hard to build the next generation of security solutions. <br>
+            A seamless experience for MaAz.app is on its way.
+        </p>
+
+        <!-- Optional Call to Action Section (Remove if not needed) -->
+        <!-- <form class="cta-form">
+            <input type="email" placeholder="Enter your email for updates..." class="cta-input" required>
+            <button type="submit" class="cta-button">Notify Me</button>
+        </form> -->
+
+        <!-- Footer / Tagline Section (Mirroring your logo) -->
+        <div class="footer-tagline">
+            <span>Secure</span>
+            <span class="tag-dot">•</span>
+            <span>Trusted</span>
+            <span class="tag-dot">•</span>
+            <span>Controlled</span>
+        </div>
+
     </div>
+
 </body>
 </html>
